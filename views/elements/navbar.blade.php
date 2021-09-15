@@ -37,6 +37,18 @@
 
             <!-- Right Side Of Navbar -->
             <div class="navbar-nav ml-auto">
+            
+                 @plugin('discord-auth') 
+                       @guest  
+                             <a class="btn btn-outline-light mx-1 my-2" href="{{ route('discord-auth.login') }}">Connect with discord</a>
+                      @endguest
+                       @auth  
+                            @hasNotDiscordLinked {{-- if user hasn't a discord account linked --}}
+                                 <a class="btn btn-outline-light mx-1 my-2" href="{{ route('discord-auth.login') }}">Link your account with Discord</a>
+                            @endhasNotDiscordLinked
+                       @endauth
+                 @endplugin
+            
                 <!-- Authentication Links -->
                 @guest
                     @if(Route::has('register'))
